@@ -21,7 +21,7 @@ function App() {
   const pausar = () => {
     setPausa(!pausa)
   };
-  const classBoton = "rounded-full bg-stone-700 p-3 m-2 text-white disabled:bg-stone-700/20 disabled:text-stone-300 drop-shadow disabled:drop-shadow-none transition-all hover:bg-stone-600 active:bg-stone-700";
+  const classBoton = "rounded-full bg-[#755e4e] p-3 m-2 text-white disabled:bg-[#755e4e]/20 disabled:text-bg-[#9c8546] drop-shadow disabled:drop-shadow-none transition-all hover:bg-stone-600 active:bg-[#755e4e]";
   const classInp = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-right";
   useEffect(() => {
     document.title = `${minutos} min`;
@@ -101,7 +101,7 @@ function App() {
                       <Switch
                         checked={enabled}
                         onChange={cambiaDark}
-                        className={`${enabled ? 'bg-stone-700' : 'bg-stone-400'}
+                        className={`${enabled ? 'bg-[#755e4e]' : 'bg-[#9c8546]'}
                                     relative inline-flex flex-shrink-0 h-[19px] w-[40px]
                                     border-2 border-transparent rounded-full cursor-pointer
                                     transition-colors ease-in-out duration-200 focus:outline-none
@@ -166,7 +166,7 @@ function App() {
         </>}
         <button className={`${classBoton} w-15 h-15`} onClick={() => openModal()}><FontAwesomeIcon className='w-6 h-4 m-auto' icon={faGear} /></button>
       </div>
-      <div className="flex flex-col h-screen w-screen overflow-hidden bg-stone-400 text-center bg-gradient-to-t from-stone-500 to-stone-200 dark:bg-gradient-to-t dark:from-stone-900 dark:to-stone-700 z-30">
+      <div className="flex flex-col h-screen w-screen overflow-hidden text-center bg-[#f0e9d6] dark:bg-[#755e4e] z-30">
         <div className='m-auto'>
           {contando ? <CountDownTimer minutos={minutos} pausa={pausa} /> :
             <div className=''>
@@ -180,7 +180,7 @@ function App() {
         </div>
       </div>
       <div className='m-auto absolute bottom-5 transition-all text-center w-full z-20'>
-        <img src={`${process.env.PUBLIC_URL}/utics${localStorage.getItem("dark") === "true" ? "_dark" : ""}.png`} className='m-auto w-1/4 max-w-[250px]' alt='UTICs' />
+        <img src={`${process.env.PUBLIC_URL}/utics${localStorage.getItem("dark") === "true" ? "_dark" : ""}.png`} className='m-auto w-1/3 max-w-[1200px]' alt='UTICs' />
       </div>
     </>
   );
