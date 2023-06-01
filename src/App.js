@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRotateRight, faGear, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRotateRight, faClock, faGear, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState, Fragment } from 'react';
 import { Dialog, Transition, Switch } from '@headlessui/react'
 import './App.css';
 import CountDownTimer from './CountDownTimer';
+import FechaYHora from './FechaYHora';
+import Titulo from './Titulo';
 import InputMask from 'react-input-mask';
 
 function App() {
@@ -12,6 +14,7 @@ function App() {
   let [isOpen, setIsOpen] = useState(false);
   const [enabled, setEnabled] = useState(localStorage.getItem("dark") === "true" ? true : false);
   const [pausa, setPausa] = useState(false);
+  const [muestraFechaYHora, setMuestraFechaYHora] = useState(false);
   function closeModal() {
     setIsOpen(false)
   }
@@ -24,14 +27,21 @@ function App() {
   const classBoton = "rounded-full bg-[#755e4e] p-3 m-2 text-white disabled:bg-[#755e4e]/20 disabled:text-bg-[#9c8546] drop-shadow disabled:drop-shadow-none transition-all hover:bg-stone-600 active:bg-[#755e4e]";
   const classInp = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-right";
   useEffect(() => {
-    document.title = `${minutos} min`;
     let readDark = localStorage.getItem("dark") === "true" ? true : false;
     if (readDark)
       document.querySelector("html").classList.add("dark");
     else
       document.querySelector("html").classList.remove("dark");
   });
+
+  const mostrarFechaYHora = () => {
+    setMuestraFechaYHora(!muestraFechaYHora);
+    setMinutos(0);
+    setContando(false);
+  }
+
   const cambiaMinutos = (minutos) => {
+    setMuestraFechaYHora(false);
     setMinutos(minutos);
     setContando(true);
   }
@@ -150,37 +160,38 @@ function App() {
           </div>
         </Dialog>
       </Transition>
-      <div className={`absolute top-2 right-2 opacity-60 z-40 transition-all`}>
-        {contando ? <>
-          <button className={`${classBoton} w-15 h-15`} onClick={() => resetAll()}>
-            <FontAwesomeIcon className='w-6 h-4 m-auto' icon={faArrowRotateRight} />
-          </button>
-          <button className={`${classBoton} w-15 h-15`} onClick={() => pausar()}>
-            <FontAwesomeIcon className='w-6 h-4 m-auto' icon={pausa ? faPlay : faPause} />
-          </button>
-        </> : <>
-          <button className={`${classBoton}`} onClick={() => cambiaMinutos(10)}>10min</button>
-          <button className={`${classBoton}`} onClick={() => cambiaMinutos(5)}>5min</button>
-          <button className={`${classBoton}`} onClick={() => cambiaMinutos(2)}>2min</button>
-          <InputMask mask="999" type="text" className={`${classBoton} w-20 text-center`} onKeyPress={(e) => cambiaMinutosInp(e)} placeholder="... min" />
-        </>}
-        <button className={`${classBoton} w-15 h-15`} onClick={() => openModal()}><FontAwesomeIcon className='w-6 h-4 m-auto' icon={faGear} /></button>
-      </div>
-      <div className="flex flex-col h-screen w-screen overflow-hidden text-center bg-[#f0e9d6] dark:bg-[#755e4e] z-30">
-        <div className='m-auto'>
-          {contando ? <CountDownTimer minutos={minutos} pausa={pausa} /> :
-            <div className=''>
-              <div className="text-black [text-shadow:0_4px_8px_rgba(0,0,0,0.45)] dark:text-white text-xsl -top-10 relative" style={{
-              }}>
-                CRONÓMETRO
-              </div>
-              <div className='h-[2vh] bg-black dark:bg-white m-auto rounded-full transition-all' style={{ width: "100%" }}></div>
-            </div>
-          }
+
+      <div className="grid grid-rows-6 grid-flow-col gap-4 h-screen w-screen overflow-hidden text-center bg-[#f0e9d6] dark:bg-[#755e4e] z-30">
+        <div>
+          <div className={`absolute top-2 left-2 opacity-60 z-40 transition-all`}>
+            <button className={`${classBoton} w-15 h-15`} onClick={() => mostrarFechaYHora()}>
+              <FontAwesomeIcon className='w-6 h-4 m-auto' icon={faClock} />
+            </button>
+          </div>
+          <div className={`absolute top-2 right-2 opacity-60 z-40 transition-all`}>
+            {contando ? <>
+              <button className={`${classBoton} w-15 h-15`} onClick={() => resetAll()}>
+                <FontAwesomeIcon className='w-6 h-4 m-auto' icon={faArrowRotateRight} />
+              </button>
+              <button className={`${classBoton} w-15 h-15`} onClick={() => pausar()}>
+                <FontAwesomeIcon className='w-6 h-4 m-auto' icon={pausa ? faPlay : faPause} />
+              </button>
+            </> : <>
+              <button className={`${classBoton}`} onClick={() => cambiaMinutos(10)}>10min</button>
+              <button className={`${classBoton}`} onClick={() => cambiaMinutos(5)}>5min</button>
+              <button className={`${classBoton}`} onClick={() => cambiaMinutos(2)}>2min</button>
+              <InputMask mask="999" type="text" className={`${classBoton} w-20 text-center`} onKeyPress={(e) => cambiaMinutosInp(e)} placeholder="... min" />
+            </>}
+            <button className={`${classBoton} w-15 h-15`} onClick={() => openModal()}><FontAwesomeIcon className='w-6 h-4 m-auto' icon={faGear} /></button>
+          </div>
         </div>
-      </div>
-      <div className='m-auto absolute bottom-5 transition-all text-center w-full z-20'>
-        <img src={`${process.env.PUBLIC_URL}/utics${localStorage.getItem("dark") === "true" ? "_dark" : ""}.png`} className='m-auto w-1/3 max-w-[1200px]' alt='UTICs' />
+        {muestraFechaYHora ? <FechaYHora /> :
+          contando ? <CountDownTimer minutos={minutos} pausa={pausa} /> :
+            <Titulo />
+        }
+        <div className='transition-all text-center w-full z-20 -mt-10'>
+          <img src={`${process.env.PUBLIC_URL}/utics${localStorage.getItem("dark") === "true" ? "_dark" : ""}.png`} className='m-auto w-1/3 max-w-[500px]' alt='UTICs' />
+        </div>
       </div>
     </>
   );

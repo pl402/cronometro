@@ -6,8 +6,10 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
+        'xxs': '7vw',
         'xsl': '14vw',
-        'xxl': '32vw',
+        'xml': '18vw',
+        'xxl': '26vw',
       }
     },
   },

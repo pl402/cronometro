@@ -63,17 +63,16 @@ const CountDownTimer = ({ minutos, pausa }) => {
     });
 
     return (
-        <>
-
-            <div style={{ opacity: parpadea ? 100 : 0 }} className={`transition-all relative -top-[15%] z-30`}>
-                <div className={`${color} text-xxl transition-all [text-shadow:0_4px_8px_rgba(0,0,0,0.45)]`}>
+        <div style={{ opacity: parpadea ? 100 : 0 }} className='row-span-4 p-10 flex items-center justify-center h-full'>
+            <div className='text-center'>
+                <div className={`${color} text-black [text-shadow:0_4px_8px_rgba(0,0,0,0.45)] dark:text-white text-xxl font-mono leading-none`}>
                     {mins === 0 && secs === 0 ? "00:00" : `${mins
                         .toString()
                         .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`}
                 </div>
-                <div className={`h-[2vh] ${bgcolor} m-auto rounded-full transition-all drop-shadow-xl relative bottom-10`} style={{ width: `${porcentaje}%` }}></div>
+                <div className={`h-[2vh] ${bgcolor} m-auto rounded-full transition-all`} style={{ width: `${porcentaje}%` }}></div>
             </div>
-        </>
+        </div>
     );
 }
 
