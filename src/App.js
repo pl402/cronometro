@@ -145,6 +145,22 @@ function App() {
                   </div>
                 </div>
 
+                <div className='flex m-auto mb-5'>
+                  <div className="mt-2 w-full pr-1">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ambarTiempo">
+                      Formato de fecha
+                    </label>
+                    <select className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline w-full" onChange={(e) => localStorage.setItem("formatoFecha", e.target.value)} defaultValue={localStorage.getItem("formatoFecha") ? localStorage.getItem("formatoFecha") : "DD/MM/YYYY"}>
+                      <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                      <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                      <option value="YYYY/MM/DD">YYYY/MM/DD</option>
+                      <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                      <option value="MM-DD-YYYY">MM-DD-YYYY</option>
+                      <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="mt-4">
                   <button
                     type="button"

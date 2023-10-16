@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 const FechaYHora = () => {
 
     const [hora, setHora] = useState(new Date().toLocaleTimeString());
@@ -7,8 +8,8 @@ const FechaYHora = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setHora(new Date().toLocaleTimeString());
-            // Set fecha en formato dd/mm/aaaa
-            setFecha(new Date().toLocaleDateString());
+            // setFecha desde moment con formato desde localStorage.formatoFecha
+            setFecha(moment().format(localStorage.formatoFecha || 'DD/MM/YYYY'));
         }, 1000);
 
         return () => clearInterval(interval);
