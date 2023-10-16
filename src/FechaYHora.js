@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import 'moment/locale/es';
 const FechaYHora = () => {
+    // Set moment to español de mexico
+    moment.locale('es');
 
     const [hora, setHora] = useState(new Date().toLocaleTimeString());
-    const [fecha, setFecha] = useState(new Date().toLocaleDateString());
+    const [fecha, setFecha] = useState(moment().format(localStorage.formatoFecha || 'DD/MM/YYYY'));
 
     useEffect(() => {
         const interval = setInterval(() => {
             setHora(new Date().toLocaleTimeString());
-            // Set moment to español de mexico
-            moment.locale('es');
             // setFecha desde moment con formato desde localStorage.formatoFecha
             setFecha(moment().format(localStorage.formatoFecha || 'DD/MM/YYYY'));
         }, 1000);
