@@ -151,12 +151,19 @@ function App() {
                       Formato de fecha
                     </label>
                     <select className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline w-full" onChange={(e) => localStorage.setItem("formatoFecha", e.target.value)} defaultValue={localStorage.getItem("formatoFecha") ? localStorage.getItem("formatoFecha") : "DD/MM/YYYY"}>
-                      <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-                      <option value="MM/DD/YYYY">MM/DD/YYYY</option>
-                      <option value="YYYY/MM/DD">YYYY/MM/DD</option>
-                      <option value="DD-MM-YYYY">DD-MM-YYYY</option>
-                      <option value="MM-DD-YYYY">MM-DD-YYYY</option>
-                      <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                      <option value="DD/MM/YYYY">15/09/1986</option>
+                      <option value="MM/DD/YYYY">09/15/1986</option>
+                      <option value="YYYY/MM/DD">1986/09/15</option>
+                      <option value="DD-MM-YYYY">15-09-1986</option>
+                      <option value="MM-DD-YYYY">09-15-1986</option>
+                      <option value="YYYY-MM-DD">1986-09-15</option>
+                      <option value="DD.MM.YYYY">15.09.1986</option>
+                      <option value="MM.DD.YYYY">09.15.1986</option>
+                      <option value="YYYY.MM.DD">1986.09.15</option>
+                      <option value="dddd DD [de] MMMM [de] YYYY">lunes 15 de septiembre de 1986</option>
+                      <option value="dddd, MMMM DD, YYYY">lunes, septiembre 15, 1986</option>
+                      <option value="ddd, DD MMM YYYY">lun., 15 sep 1986</option>
+                      <option value="DD [de] MMMM [de] YYYY">15 de septiembre de 1986</option>
                     </select>
                   </div>
                 </div>
