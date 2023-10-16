@@ -70,7 +70,7 @@ const CountDownTimer = ({ minutos, pausa }) => {
                         .toString()
                         .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`}
                 </div>
-                <div className={`h-[2vh] ${bgcolor} m-auto rounded-full transition-all`} style={{ width: `${porcentaje}%` }}></div>
+                <div className={`h-[2vh] ${bgcolor} m-auto rounded-full transition-all duration-1000`} style={{ width: `${porcentaje}%` }}></div>
             </div>
         </div>
     );
