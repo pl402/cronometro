@@ -72,6 +72,8 @@ const CountDownTimer = ({ minutos, pausa }) => {
                 </div>
                 <div className={`h-[2vh] ${bgcolor} m-auto rounded-full transition-all duration-1000`} style={{ width: `${porcentaje}%` }}></div>
             </div>
+            <div class="text-yellow-500 dark:text-yellow-500 bg-yellow-500 dark:bg-yellow-500 hidden"></div>
+            <div class="text-red-500 dark:text-red-500 bg-red-500 dark:bg-red-500 hidden"></div>
         </div>
     );
 }
